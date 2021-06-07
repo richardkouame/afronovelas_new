@@ -1,0 +1,293 @@
+:root{
+	--primary-color:#753E89;
+}
+
+
+body{
+	background-color: #000 !important;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	overflow: hidden;
+	position: relative;
+}
+
+
+#player-control-bar{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(43, 51, 63, 0.7);
+	display: flex;
+	flex-direction: row;
+	color: #fff;
+	padding: 7px 15px 7px 15px;
+	font-size: 11px;
+}
+
+.player-header{
+	position: relative;
+	width: 100%;
+	background: rgba(23,35,34,.75);
+	padding: 1%;
+	color: #fff;
+	opacity: 1;
+
+	-webkit-transform: translateY(0);
+	-o-transform: translateY(0);
+	-ms-transform: translateY(0);
+	transform: translateY(0);
+
+	-webkit-transition: all .3s ease-in;	
+	-o-transition: all .3s ease-in;	
+	-ms-transition: all .3s ease-in;	
+	transition: all .3s ease-in;	
+}
+
+.video-js:not(.vjs-paused).vjs-user-inactive .player-header{
+	opacity: 0;
+	-webkit-transform: translateY(0);
+	-o-transform: translateY(0);
+	-ms-transform: translateY(0);
+	transform: translateY(-100%);
+
+	-webkit-transition: all .3s ease-out;	
+	-o-transition: all .3s ease-out;	
+	-ms-transition: all .3s ease-out;	
+	transition: all .3s ease-out;		
+}
+
+.video-js:not(.vjs-paused).vjs-user-inactive .player-btn-controls{
+	opacity: 0;
+	-webkit-transition: all .5s .3s ease-out;	
+	-o-transition: all .5s .3s ease-out;	
+	-ms-transition: all .5s .3s ease-out;	
+	transition: all .5s .3s ease-out;		
+}
+
+.vjs-control-bar {
+	background: rgba(23,35,34,.75) !important;
+	color: var(--primary-color);
+	z-index: 2;
+}
+
+.player-header .player-channel-name, .player-header .player-movie-title{
+	display: block;
+}
+
+.player-header .player-movie-title,{
+	font-weight: bold;
+}
+
+.player-header .player-channel-name{
+	font-size: 1.0rem;
+}
+
+#player-logo{
+	margin-left: auto;
+}
+
+#player-logo img{
+	width: 150px;
+}
+
+#player-video-container{
+	width:100vw;
+	height:100vh;
+	overflow: hidden;
+}
+.player-btn-controls{
+	position: absolute;
+	left: 40%;
+	top:40%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	z-index: 1;
+	visibility: hidden;
+}
+
+.player-btn-controls .player-step-backward, .player-btn-controls .player-step-forward{
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	background-color:rgba(0, 0, 0, 0.5);
+	cursor: pointer;
+	color: rgba(255, 255, 255, 0.5);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.player-btn-controls .player-play{
+	margin-right: 20px;
+	margin-left: 20px;
+}
+/* .player-play{
+	position: absolute;
+	left: 50%;
+	right: 50%;
+	top:50%;
+	opacity: 1;
+} */
+
+.video-js .vjs-big-play-button{
+	/* position: absolute !important;
+	left: 45% !important;
+	right: 45% !important;
+	top:50%; */
+
+	display: none;
+}
+
+
+.video-icon {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+   
+    display: block;
+    z-index: 1;
+   /*  position: absolute;
+   top: 50%;
+   left: 50%;
+   margin-top: -33px;
+   margin-left: -33px; */
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.3s, visibility 0.3s, border-color 0.3s;
+    -webkit-transition: background-color 0.3s, opacity 0.3s, visibility 0.3s, border-color 0.3s;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+}
+
+.video-js.vjs-paused .video-icon:after,
+.video-js.vjs-has-started.vjs-paused .video-icon:after{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: solid transparent;
+    border-width: 15px 25px;
+    border-left-color: rgba(255, 255, 255, 0.5);
+    top: 50%;
+    left: 50%;
+    margin-top: -15px;
+    margin-left: -8px;
+    transition: border-color 0.3s;
+    -webkit-transition: border-color 0.3s;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+}
+
+
+.video-js.vjs-has-started.vjs-playing .video-icon:after,
+.video-js.vjs-has-started.vjs-playing .video-icon:before{
+	content: '';
+   	display: block;
+   	position: absolute;
+   	width: 10px;
+   	height: 30px;
+   	border: none;
+   	top: 50%;
+   	margin-top: -15px;
+   	margin-left: -12px;
+   	background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+.video-js.vjs-has-started.vjs-playing .video-icon:after{
+   left: 50%;
+}
+
+.video-js.vjs-has-started.vjs-playing .video-icon:before{
+   left: 70%;
+}
+
+
+.video-icon:hover {
+	animation: videoiconclick 1.5s infinite ease-in-out;
+	-webkit-animation: videoiconclick 1.5s infinite ease-in-out;
+}
+
+@keyframes videoiconclick {
+	from {
+		transform: scale3d(1, 1, 1);
+		background-color: #e50914;
+	}
+
+	50% {
+		transform: scale3d(1.1, 1.1, 1.1);
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+
+	to {
+		transform: scale3d(1, 1, 1);
+		background-color: #e50914;
+	}
+
+}
+
+@-webkit-keyframes videoiconclick {
+	from {
+		transform: scale3d(1, 1, 1);
+		background-color: #e50914;
+	}
+
+	50% {
+		transform: scale3d(1.1, 1.1, 1.1);
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+
+	to {
+		transform: scale3d(1, 1, 1);
+		background-color: #e50914;
+	}
+}
+
+
+
+
+.gradient-top {
+    background: -moz-linear-gradient(bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%);
+    background: -webkit-linear-gradient(bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+    background: linear-gradient(bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
+}
+
+
+
+.player-logo{
+	height: 30px;
+	width: 124px;
+	background: url("../images/logo-player.png") no-repeat center center / 124px 30px;
+
+	vertical-align: bottom;
+}
+
+.video-js.has-player-id .player-voucher{
+	visibility: hidden;
+}
+
+.video-js.has-player-error .player-voucher{
+	visibility: visible;
+}
+
+.video-js.has-player-error .player-voucher .alert{
+	display: block;
+}
+

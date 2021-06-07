@@ -1,19 +1,106 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="fr">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Language" content="en">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>
+            Afro Novelas &mdash; Accueil
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no"
+        />
+        <meta name="description" content="">
+
+        <!-- Disable tap highlight on IE -->
+        <meta name="msapplication-tap-highlight" content="no">
+
         {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
+            <link href="{{ asset("libs/bootstrap/bootstrap.min.css") }}" rel="stylesheet">
+            <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+            <link href="{{ asset("css/cookies.css") }}" rel="stylesheet">
+
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
         {% endblock %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
+
+    <body class="" data-anchor="{{ app.request.query.get('anchor') }}">
+
+        <div class="container-fluid px-0">
+            {{ include("header.html.twig") }}
+            
+            {% block body %}{% endblock %}
+             
+            {{ include("footer.html.twig") }}            
+        </div>
+                
+        <div class="app-drawer-overlay">
+            <img src="{{ asset('images/logo.png') }}" alt="">
+        </div>
+
+        {{ include("front/cookieconsent.html.twig") }}
+
+        {% block javascripts %}
+    
+            <script src="{{ asset("libs/jquery/jquery-3.6.0.min.js") }}"></script>
+            <script src="{{ asset("libs/bootstrap/popper.min.js") }}"></script>
+            <script src="{{ asset("libs/bootstrap/bootstrap.min.js") }}"></script>
+            <script src="{{ asset("js/main.js") }}"></script>
+
+            <script>
+                jQuery(document).ready(function($){
+                    var app_overlay = $(".app-drawer-overlay");
+                    app_overlay.addClass("fadeIn");
+                    setTimeout(()=>{
+                        app_overlay.addClass("d-none");
+                    },1000);
+
+                    $("#header-mobile-menu").on({
+                    click:function(e){
+                        e.preventDefault();
+                        var container = $("#master-menu-mobile");
+
+                        if(container.hasClass("active")){
+                            container.removeClass('active');
+                            container.toggleClass('closed');
+                        }
+                        else{
+                            container.toggleClass('active');
+                            container.removeClass('closed');
+                        } 
+                    }
+                });
+
+                var cookieconsent = $("#cookieconsent");
+                var consent = parseInt(window.localStorage.getItem("cookieconsent"));
+
+                if(!consent){
+                    cookieconsent.addClass("active");
+                }
+
+                // accepter le cookie
+                cookieconsent.find("button.allow").on("click",function(e){
+                    e.preventDefault();
+                    cookieconsent.removeClass('active');
+                    window.localStorage.setItem("cookieconsent",1)
+                })
+
+                // refuser le consent
+                cookieconsent.find("span.allow").on("click",function(e){
+                    e.preventDefault();
+                    cookieconsent.removeClass("active");
+                    window.localStorage.setItem("cookieconsent",0);
+                });
+
+                });
+                
+
+            </script>
+    
+        {% endblock %}
+
+        
     </body>
 </html>

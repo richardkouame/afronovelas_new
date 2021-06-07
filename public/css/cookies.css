@@ -1,0 +1,70 @@
+#cookieconsent {
+    position: fixed;
+    z-index: 500;
+    min-width: 100%;
+    font-size: 0.9rem;
+    line-height: 1.2em;
+    padding: 0.05rem 3.2rem 0.05rem 4vw;
+    box-sizing: border-box;
+    background: black;
+    background-image: url(../images/bg.png);
+
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    left: 0;
+    -moz-transition: all .2s;
+    -o-transition: all .2s;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+}
+
+#cookieconsent > span {
+    position: absolute;
+    right: 1.2rem;
+    top: 35%;
+    cursor: pointer;
+    -moz-transition: all .2s;
+    -o-transition: all .2s;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+}
+
+#cookieconsent > span {
+    cursor: pointer;
+}
+
+#cookieconsent div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 5px;
+    box-sizing: border-box;
+    align-items: center;
+    width: 100%;
+}
+
+#cookieconsent div p {
+    color: white;
+    padding: 0 30px 0 0;
+}
+
+
+#cookieconsent div button {
+    font-family: 'avenir-bold',sans-serif;
+    font-size: 0.7rem;
+    color: white;
+    line-height: 0.6rem;
+    background: #cd922a;
+    border: none;
+    text-transform: uppercase;
+    width: auto;
+    padding: 0.65rem 1.8rem;
+    border-radius: 50px;
+    cursor: pointer;
+    -moz-transition: all .2s;
+    -o-transition: all .2s;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+}

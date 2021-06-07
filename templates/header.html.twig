@@ -1,0 +1,115 @@
+{# affichage menu mobile #}
+<div id="master-menu-mobile" class="d-md-none d-sm-block d-block position-fixed">
+	<div id="master-menu-mobile-wrapper" class="position-absolute">
+		<div class="list-group">
+
+			<a href="/?anchor=bouquets" class="list-group-item list-group-item-action anchor">
+				Les bouquets
+			</a>
+
+			<a href="/?anchor=novelas" class="list-group-item list-group-item-action anchor">
+				Novelas
+			</a>
+
+			<a href="/?anchor=guide-tv" class="list-group-item list-group-item-action anchor">
+				Guide Tv
+			</a>
+
+			<a href="/conditions-generales-de-vente" class="list-group-item list-group-item-action ">
+				Conditions générales de ventes
+			</a>
+
+			<a href="/conditions-generales-d-utilisation" class="list-group-item list-group-item-action">
+				Conditions générales d'utilisations
+			</a>
+
+			<a href="/politiques-de-confidentialite" class="list-group-item list-group-item-action">
+				Politiques de confidentialité
+			</a>
+		</div>
+	</div>
+</div>
+
+<div id="master-menu">
+	{# affichage mobile #}
+	<header class="row d-md-none d-sm-block d-block mobile-header-bar">
+		<div class="col-sm-12 text-left d-flex flex-row align-items-center">
+
+			<div class="mobile-header-left d-flex flex-row justify-content-center">
+				<a href="" id="header-mobile-menu" class="text-light btn btn-outline-light  mobile-header-item">
+					<i class="fas fa-bars"></i>
+				</a>
+
+
+				<a href="/" id="header-logo" class="mobile-header-item ml-4">
+					<img height="42" src="{{ asset('images/logo.png') }}" alt="logo">
+				</a>
+			</div>
+
+			
+			<div class="text-white ml-auto mobile-header-right">
+				
+			</div>
+		</div>
+
+	</header>
+
+	{# affichage desktop #}
+	<div class="row-fluid d-none d-md-flex">
+	    <div class="col-md-12">
+			<header class="d-flex flex-row align-items-center justify-content-center desktop-header-bar">
+				<a href="/" id="logo">
+					<img class="logo" src="{{ asset('images/logo.png') }}" alt="">
+				</a>
+
+				<div class="ml-auto ">
+					<div class="row">
+						<div class="md-col-7 d-flex flex-row align-items-center justify-content-center">
+							<nav>
+								<ul class="list-unstyled mb-0 font-avenir-regular" id="menu">
+									<li><a class="anchor" href="#anchor-bouquets" >Les bouquets</a></li>
+									<li class="menu-divider"></li>
+									<li><a class="anchor" href="#anchor-novelas" >Novelas</a></li>
+									<li class="menu-divider"></li>
+									<li><a class="anchor" href="#anchor-guide-tv">Guide TV</a></li>
+									<li class="menu-divider"></li>
+									<li >
+										<a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											{{ app.request.attributes.get("_locale")|upper }}
+										</a>
+
+										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+						    				<a class="dropdown-item" href="/switch-lang/en">Anglais</a>
+						    				<a class="dropdown-item" href="/switch-lang/fr">Français</a>
+						  				</div>
+									</li>
+								</ul>
+							</nav>
+						</div>
+
+						<div class="md-col-5">
+							<nav class="ml-4">
+								<ul class="list-unstyled mb-0" id="social-media">
+									<li>
+										<a href="https://www.facebook.com/afronovelas">
+											<img src="{{ asset('images/fb.png') }}" alt="">
+										</a>
+									</li>
+									<li>
+										<a href="https://www.facebook.com/afronovelas">
+											<img src="{{ asset('images/in.png') }}" alt="">
+										</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+
+					</div>
+				</div>
+			</header>
+		</div>
+	</div>
+</div>
+
+
+

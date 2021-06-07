@@ -1,0 +1,259 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+	{{ parent() }}
+
+	<link href="{{ asset('libs/owlcarousel/dist/assets/owl.carousel.min.css') }}" rel="stylesheet" />
+	<link href="{{ asset('libs/bxslider/jquery.bxslider.min.css') }}" rel="stylesheet" />
+	<link href="{{ asset('libs/venobox/venobox.css') }}" rel="stylesheet" />
+
+{% endblock %}
+
+{% block body %}
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v10.0&appId=442125703391580&autoLogAppEvents=1" nonce="4U8pBMJH"></script>
+
+	<div class="modal modal-primary fade" id="modal-movie">
+		<div class="modal-dialog modal-lg">
+
+
+			
+	    	<div class="modal-content" style="border-radius:20px">
+	      		
+	    		<div style="position:absolute;right:-8%;top:-8%;z-index:2">
+				<a href="" data-dismiss="modal" >
+					<img width="50%" src="{{ asset('images/btn_close.png') }}" alt="">
+				</a>
+			</div>
+
+          		<div class="modal-body font-avenir-regular">
+
+          			<div class="row">
+          				<div class="col-md-4">
+							<img style="border-radius:20px"  class="img-fluid selected-movie-image" src="" alt="">
+          				</div>
+
+          				<div class="col-md-8">
+          					<h2 class="font-avenir-bold text-truncate text-uppercase mb-0 selected-movie-title text-dark"></h2>
+
+          					<small class="text-muted selected-movie-subtitle text-uppercase" style="font-size:14px"></small>
+
+          					<div class="mt-4 selected-movie-desc"></div>
+
+          					<div class="float-right">
+          						<a href="" class="btn btn-outline nn-text-color" style="border-radius: 20px;border: 1px solid #753e89;background: #fff;">
+          							<strong>Voir le trailer</strong> <img style="vertical-align:bottom" width="15%" src="{{ asset('images/btn_play.png') }}" alt="">
+          						</a>
+          					</div>
+          					
+          				</div>
+          			</div>
+
+                   
+          		</div>
+	    	</div>
+	  	</div>
+	</div>
+
+
+
+	{{ include("front/includes/caroussel.html.twig") }}
+
+	<div class="row-fluid">
+	    <div class="col-md-12 px-0">
+			<section class="animation-none slogan">
+				<div class="d-flex flex-row align-items-center justify-content-center p-4 mb-4 section-title" >
+					<h4 class="font-avenir-bold text-light">
+						LES MEILLEURES SERIES D'AFRIQUE
+					</h4>
+				</div>
+			</section>
+		</div>
+	</div>
+
+	<div class="row-fluid">
+	    <div class="col-md-12 px-0">
+			<section id="anchor-bouquets" class="section has-carousel animation-top">
+
+				<div class="d-flex flex-row align-items-center justify-content-center p-4 mb-4 section-title" >
+					<h4 class="font-avenir-bold text-light">
+						DISPONIBLE SUR...
+					</h4>
+
+					<div class="ml-auto">
+						<ul class="list-unstyled text-right">
+							<li class="d-inline-block">
+								<a href="" class="slide-nav nav-p">
+									<img style="width: 50%" class="img-fluid" src="{{ asset('images/c-nav-l.png') }}" alt="">
+								</a>
+							</li>
+
+							<li class="d-inline-block">
+								<a href="" class="slide-nav nav-n">
+									<img style="width: 50%" class="img-fluid" src="{{ asset('images/c-nav-r.png') }}" alt="">
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="px-4 section-special-p">
+					<div class="bouquet owl-carousel text-left">
+
+						{% for el in bouquets %}
+							<div class="bouquet-item has-detail">
+								<img src="{{ asset('images/bouquets/'~el.image) }}" alt="{{el.name}}">
+								<div class="overlay">
+									<a href="" class="font-avenir-regular text-white">
+										s'abonner <i class="fa fa-bell"></i>
+									</a>
+								</div>
+							</div>
+						{% endfor %}
+
+					</div>
+				</div>
+
+			</section>
+
+
+			<section id="anchor-novelas" class="mt-5 section has-carousel animation-top">
+
+				<div class="d-flex flex-row align-items-center justify-content-center p-4 mb-4 section-title">
+					<h4 class="font-avenir-bold text-light">
+						VOS SERIES
+					</h4>
+
+					<div class="ml-auto">
+						<ul class="list-unstyled text-right">
+							<li class="d-inline-block">
+								<a href="" class="slide-nav nav-p">
+									<img style="width: 50%" class="img-fluid" src="{{ asset('images/c-nav-l.png') }}" alt="">
+								</a>
+							</li>
+
+							<li class="d-inline-block">
+								<a href="" class="slide-nav nav-n">
+									<img style="width: 50%" class="img-fluid" src="{{ asset('images/c-nav-r.png') }}" alt="">
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="px-4 section-special-p" >
+					<div class="movies-container owl-carousel">
+
+						{% for el in novelas %}
+							<div data-hastrailer="{{el.hastrailer}}" data-id="{{ el.id }}" data-synopsis="{{ el.synopsis }}" data-originalname="{{ el.original_name }}" data-name="{{ el.name }}" class="movie-item has-detail">
+								<img class="img-fluid" src="{{ asset('images/novelas/'~el.image) }}" alt="{{el.name}}">
+								<div class="overlay">
+									<a href="" class="font-avenir-regular text-white modal-trigger">
+										voir plus <i class="fa fa-plus-circle"></i>
+									</a>
+								</div>
+							</div>
+						{% endfor %}
+						
+					</div>
+				</div>
+
+
+
+			</section>
+
+			<section class="container-fluid px-0 animation-none my-2" id="player-container">
+				<div  style="width:100%;max-height: 650px;overflow:hidden;background:#000" class="caroussel-overlay caroussel-overlay-top position-relative">
+					<div id="player"></div>
+					<a id="sound-ctrl" href="" class="fas fa-2x muted"></a>
+				</div>
+			</section>
+
+			<section id="anchor-guide-tv" class="mt-5 section animation-top" >
+
+				<div class="d-flex flex-row align-items-center justify-content-center p-4 mb-4 section-title">
+					<h4 class="font-avenir-bold text-light">
+						GRILLES DES PROGRAMMES
+					</h4>
+
+					<div class="ml-auto d-none d-md-block">
+						<h4 class="text-light font-avenir-bold">
+							RESEAUX SOCIAUX
+						</h4>
+					</div>
+				</div>
+
+				<div class="px-4 section-special-p">
+
+					<div class="row">
+						<div class="col-md-8 mb-sm-3">
+							
+							<div class="row mt-4">
+
+								<table id="tvguide" class="table table-sm font-avenir-regular">
+									
+								  	<tbody class="text-center">
+								  		{% for el in tvguide %}
+										    <tr class="{% if el.rowspan %} new-block {% endif %}">
+										    	<td>
+										    		<span class="font-avenir-bold text-light hour" style="font-size:1.8rem">
+										    			{{el.hour}}
+										    		</span>
+										    	</td>
+										    	
+										      	<td class="text-left">
+										      		<h1 style="font-size: 2.1rem;" class="text-light font-avenir-bold">
+									        			{{el.name|lower|title}}
+									        		</h1>
+										      	</td>
+
+										      	<td class="d-none d-md-block" style="vertical-align: middle;">
+										      		<label class="badge font-avant-garde-xlt text-uppercase font-weight-bold" style="letter-spacing:.1rem;border:1px solid #cd922a;color:#cd922a">
+									        			{{ el.new_episode ? "Nouvel épisode" : "Rediffusion" }}
+									        		</label>
+										      	</td>
+										    </tr>
+										{% endfor %}
+								  	</tbody>
+								</table> 
+							</div>
+						</div>
+
+						<div class="col-md-4">
+
+								<h4 class="d-md-none d-xs-block text-light font-avenir-bold text-center">
+									RESEAUX SOCIAUX
+								</h4>
+								
+								<div id="social-media-section" class="fb-page text-center" data-href="https://www.facebook.com/afronovelas" data-tabs="timeline, events, messages" data-width="" data-height="620" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/afronovelas" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/afronovelas">Afro Novelas</a></blockquote></div>
+
+
+						</div>
+					</div>
+				</div>
+			</section>
+
+
+			<section class="animation-fade">
+				<a href="https://play.google.com/store/apps/details?id=com.release.mynina" >
+					<div id="bottom-banner"></div>
+				</a>
+			</section>
+
+			
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	<script src="{{ asset('libs/owlcarousel/dist/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('libs/bxslider/jquery.bxslider.min.js') }}"></script>
+    <script src="{{ asset('libs/venobox/venobox.min.js') }}"></script>
+    <script src="https://player.vimeo.com/api/player.js"></script>
+
+
+    <script src="{{ asset('js/index.js') }}"></script>
+
+{% endblock %}

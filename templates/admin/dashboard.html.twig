@@ -1,0 +1,47 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block stylesheets %}
+<link href="{{ asset('assets/libs/chartist/chartist.min.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+        {% include 'admin/includes/header.html.twig' %}
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <h1 align="center">Bienvenue sur le panneau d'administration</h1>
+                    <!-- end page title -->
+
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+            {% include 'admin/includes/footer.html.twig' %}
+
+        </div>
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/libs/chartist/chartist.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/chartist-plugin-tooltips/chartist-plugin-tooltip.min.js') }}"></script>
+
+    <script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
+{% endblock %}

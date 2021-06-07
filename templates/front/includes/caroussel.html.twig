@@ -1,0 +1,51 @@
+<div id="caroussel-container">
+	<div id="bxslider-baner" style="height:100%;overflow:hidden">
+        <div>
+            <a href="">
+                <img class="img-fluid" src="{{ asset('images/caroussel.jpg') }}" data-state="true" alt="">
+            </a>
+        </div>
+
+        {% for el in banner_data %}
+	        <div>
+	        	<div style="position:absolute;top:0;bottom:15%;left:10%;padding:20px;width:40%;" class="d-flex flex-column justify-content-center">
+	        		<h1 style="font-size: 2.8rem;" class="{{el.text_class}} font-avenir-bold">
+	        			{{ el.name|upper}}
+	        		</h1>
+
+	        		<div class="d-flex flex-row mb-2">
+	        			<small class="badge badge-light align-self-start ">
+	        				{{ el.format}}
+	        			</small>
+
+	        			{% for genre in el.genres %}
+		        			<small class="badge badge-light align-self-start ml-2">
+		        				{{ genre }}
+		        			</small>
+		        		{% endfor %}
+	        		</div>
+
+
+	        		<div class="tools">
+	        			{% if el.trailer%}
+		        			<a href="{{ el.trailer }}" style="font-size:12px" class="btn {{el.btn_class}} text-left font-open-sans-bold align-self-start venobox"  data-vbtype="video" data-autoplay="true" data-title="{{ el.name|upper}}" >
+								<i class="fa fa-play"></i>&nbsp;VOIR LE TRAILER
+							</a>
+						{% endif %}
+	        		</div>
+
+	        	</div>
+
+	            <a href="">
+	                <img class="img-fluid" src="{{ asset('images/banner/'~el.image) }}" data-state="true" alt="{{el.name}}">
+	            </a> 
+	        </div>
+    	{% endfor %}
+	</div>
+</div>
+
+{# <div id="caroussel-container">
+	<div class="caroussel">
+		
+	</div>
+</div> #}

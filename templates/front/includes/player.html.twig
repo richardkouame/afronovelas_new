@@ -1,0 +1,93 @@
+<!Doctype html>
+<html>
+	<head>
+		{#<title>{% block title %}{{ movie.name }} &mdash; {{ episode.title }}{% endblock %}</title>
+		<meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	   	<meta name="description" content='{% block meta_description_content %}{% if movie.synopsis %}{{ movie.synopsis }}{% else %}Shortz VOD, est une plateforme de streaming de contenu video au format court en dessous de 15 minutes.{% endif %}{% endblock %}'>
+
+	    <meta property="og:site_name" content="aZa VOD" />
+	    <meta property="og:title" content="{{ self.title() }}" />
+        <meta property="og:type" content="video.movie" />
+        <meta property="og:url" content="{{ url_for('player', video_id=video._id, header='no', similar_movie='no',_external=True)}}" />
+        <meta property="og:image" content="{{ url_for('static', filename='mediatheque/{}'.format(episode.video.large_screenshot), _external=True) }}" />
+        <meta property="og:description " content="{{ self.meta_description_content() }}" />#}
+
+
+
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+		{# <link href="https://vjs.zencdn.net/7.6.0/video-js.css" rel="stylesheet"> #}
+		<link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+		<link href="{{ asset('css/player.css') }}" rel="stylesheet">
+
+
+	</head>
+
+	<body>
+
+		<div id="player-video-container" >
+			<video  id="video" class="video-js" style="width:100%; height:100%;"></video>
+		</div>
+
+		
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+		{#<script src='https://unpkg.com/video.js/dist/video.min.js'></script>#}
+		<script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+
+		<script src="https://unpkg.com/@videojs/http-streaming@2.8.0/dist/videojs-http-streaming.min.js"></script>
+
+		<script src="{{ asset('js/video-plugin.js') }}"></script>
+
+		<script>
+			window.HELP_IMPROVE_VIDEOJS = false;
+			var video = document.querySelector('video');
+			var source = '{{ asset("video/"~novela.id~"/playlist.m3u8") }}';
+			var poster = '{{ asset("video/"~novela.id~"/screenshot.jpg") }}';
+
+			jQuery(document).ready(function($){
+				var player = videojs(video,{
+					height:"100%",
+					width:"100%",
+					controls: true,
+					autoplay: true,
+					preload: true,
+					muted: true,
+					//loop:true,
+					poster:poster ? poster : null,
+					cacheEncryptionKeys:true,
+					html5: {
+				    	vhs: {
+				      		withCredentials: true,
+				      		overrideNative: true,
+				      		onload:function(e){
+				      			console.log('c coooooooool')
+				      		}
+				    	}
+				  	},
+				  	controlBar: {
+				    	pictureInPictureToggle: false
+				  	}
+				  	
+				});
+
+				
+				var aazPlugin = player.aazPlugin({
+					"source":source,
+					"poster":poster,
+				});
+				aazPlugin.init();
+			});
+	    </script>
+
+	</body>
+</html>
