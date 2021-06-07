@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\Timestampable;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -11,9 +14,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    use Timestampable;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -48,13 +53,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $lastname;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\OneToMany(targetEntity=Serie::class, mappedBy="user")
      */
-    private $addedAt;
+    private $series;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Schedule::class, mappedBy="user")
+     */
+    private $schedules;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Program::class, mappedBy="user")
+     */
+    private $programs;
 
     public function __construct()
     {
         $this->addedAt = new \DateTime('now');
+        $this->series = new ArrayCollection();
+        $this->schedules = new ArrayCollection();
+        $this->programs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -167,14 +185,92 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAddedAt(): ?\DateTimeInterface
+    /**
+     * @return Collection|Serie[]
+     */
+    public function getSeries(): Collection
     {
-        return $this->addedAt;
+        return $this->series;
     }
 
-    public function setAddedAt(\DateTimeInterface $addedAt): self
+    public function addSeries(Serie $series): self
     {
-        $this->addedAt = $addedAt;
+        if (!$this->series->contains($series)) {
+            $this->series[] = $series;
+            $series->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSeries(Serie $series): self
+    {
+        if ($this->series->removeElement($series)) {
+            // set the owning side to null (unless already changed)
+            if ($series->getUser() === $this) {
+                $series->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Schedule[]
+     */
+    public function getSchedules(): Collection
+    {
+        return $this->schedules;
+    }
+
+    public function addSchedule(Schedule $schedule): self
+    {
+        if (!$this->schedules->contains($schedule)) {
+            $this->schedules[] = $schedule;
+            $schedule->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSchedule(Schedule $schedule): self
+    {
+        if ($this->schedules->removeElement($schedule)) {
+            // set the owning side to null (unless already changed)
+            if ($schedule->getUser() === $this) {
+                $schedule->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Program[]
+     */
+    public function getPrograms(): Collection
+    {
+        return $this->programs;
+    }
+
+    public function addProgram(Program $program): self
+    {
+        if (!$this->programs->contains($program)) {
+            $this->programs[] = $program;
+            $program->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProgram(Program $program): self
+    {
+        if ($this->programs->removeElement($program)) {
+            // set the owning side to null (unless already changed)
+            if ($program->getUser() === $this) {
+                $program->setUser(null);
+            }
+        }
 
         return $this;
     }
