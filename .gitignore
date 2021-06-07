@@ -18,3 +18,8 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+
+###> phpstorm config files ###
+/.idea
+###< phpsotrm config files ###
