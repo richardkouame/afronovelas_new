@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Genre;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -14,13 +15,13 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $faker = Factory::create('fr_FR');
+        /*$faker = Factory::create('fr_FR');
         $user = (new User())
             ->setFirstname("demo")
             ->setLastname("demo")
             ->setEmail("demo@example.com")
             ->setPassword('$2y$13$ab4Q9zi4ObMiUH.ilXFwf.ByCSCLa/DbogMrsjDiiCNoLMU9950Be')
-            ->setAddedAt($faker->dateTimeBetween('-2 months'));
+            ->setCreatedAt($faker->dateTimeBetween('-2 months'));
 
         $manager->persist($user);
 
@@ -30,9 +31,18 @@ class AppFixtures extends Fixture
                 ->setLastname($faker->lastName)
                 ->setEmail($faker->email)
                 ->setPassword('$2y$13$ab4Q9zi4ObMiUH.ilXFwf.ByCSCLa/DbogMrsjDiiCNoLMU9950Be')
-                ->setAddedAt($faker->dateTimeBetween('-2 months'));
+                ->setCreatedAt($faker->dateTimeBetween('-2 months'));
 
             $manager->persist($user);
+        }*/
+
+        $tab = ['Amour', 'Passion', 'Drame', 'Aventure'];
+
+        foreach ($tab as $value) {
+            $genre = (new Genre())
+                ->setTitle($value);
+
+            $manager->persist($genre);
         }
 
 

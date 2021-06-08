@@ -10,6 +10,8 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
+    {% block stylesheets %}{% endblock %}
+
     <!-- Bootstrap Css -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
@@ -19,12 +21,26 @@
     <!-- Custom Css-->
     <link href="{{ asset('assets/css/custom.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 
-    {% block stylesheets %}{% endblock %}
 </head>
 
 <body data-sidebar='dark'>
 
-    {% block body %}{% endblock %}
+        <div id="layout-wrapper">
+
+            {% include 'admin/includes/header.html.twig' %}
+
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+                        {% block body %}{% endblock %}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
 
     <!-- JAVASCRIPT -->
     <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
@@ -33,9 +49,10 @@
     <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
 
+    {% block javascripts %}{% endblock %}
+
     <script src="{{ asset('assets/js/app.js') }}"></script>
 
-    {% block javascripts %}{% endblock %}
 
 </body>
 

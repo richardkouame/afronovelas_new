@@ -25,6 +25,7 @@
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ app.user.fullname }}
                     <img class="rounded-circle header-profile-user" src="{{ asset('assets/images/users/user-4.jpg') }}"
                          alt="Header Avatar">
                 </button>
@@ -54,9 +55,15 @@
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title">Menu</li>
 
+                {#<li>
+                    <a href="{{ path('admin_program_liste') }}" class="waves-effect">
+                        <span>Programmes</span>
+                    </a>
+                </li>#}
+
                 <li>
-                    <a href="#" class="waves-effect">
-                        <span>Bannières</span>
+                    <a href="{{ path('admin_program_liste') }}" class="waves-effect">
+                        <span>Bannière</span>
                     </a>
                 </li>
 

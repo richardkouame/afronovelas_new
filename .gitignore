@@ -19,6 +19,13 @@
 .phpunit.result.cache
 ###< phpunit/phpunit ###
 
+###> phpstorm config files ###
+/public/images/programs/
+/public/images/banner/
+/public/images/bouquets/
+/public/images/novelas/
+###< phpsotrm config files ###
+
 
 ###> phpstorm config files ###
 /.idea

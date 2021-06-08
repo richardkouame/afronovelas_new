@@ -1,0 +1,85 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Programmes{% endblock %}
+
+{% block stylesheets %}
+<!-- Lightbox css -->
+<link href="{{ asset('assets/libs/magnific-popup/magnific-popup.css') }}" rel="stylesheet" type="text/css" />
+<!-- DataTables -->
+<link href="{{ asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body %}
+    <div class="row align-items-center">
+        <div class="col-sm-6">
+            <div class="page-title-box">
+                <h4 class="font-size-18">Programmes</h4>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="float-right d-none d-md-block">
+                <a href="{{ path('admin_program_new') }}" class="btn btn-primary">Ajouter programme</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <h4 class="card-title">Programmes</h4>
+
+                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Titre</th>
+                            <th>Synopsis</th>
+                            <th>Lien</th>
+                            <th>Format</th>
+                            <th>Genre</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for program in programmes %}
+                            <tr>
+                                <td>
+                                    <a class="image-popup-no-margins" href="{{ asset('images/banner/' ~ program.image) }}">
+                                        <img class="img-fluid" alt="" src="{{ asset('images/banner/' ~ program.image) }}" width="45">
+                                    </a>
+                                </td>
+                                <td>{{ program.title }}</td>
+                                <td>{{ program.synopsis }}</td>
+                                <td>{{ program.trailerLink }}</td>
+                                <td>{{ program.format }}</td>
+                                <td>{{ program.genderList | raw }}</td>
+                                <td>
+                                    <a href="{{ path('admin_program_edit', {id: program.id}) }}" class="btn btn-warning"><i class="fas fa-pen-alt"></i></a>
+                                    <a href="#" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+<!-- Magnific Popup-->
+<script src="{{ asset('assets/libs/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
+<!-- Tour init js-->
+<script src="{{ asset('assets/js/pages/lightbox.init.js') }}"></script>
+<!-- Required datatable js -->
+<script src="{{ asset('assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js') }}"></script>
+<!-- Datatable init js -->
+<script src="{{ asset('assets/js/pages/datatables.init.js') }}"></script>
+{% endblock %}

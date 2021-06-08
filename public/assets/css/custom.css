@@ -2,6 +2,15 @@
     background-color: #000;
     border-color: #000;
 }
+.btn-primary:hover {
+    background-color: #c88d28;
+    border-color: #c88d28;
+}
+
+.page-item.active .page-link {
+    background-color: #000;
+    border-color: #000;
+}
 
 .bg-primary {
     background-color: #000 !important;
@@ -16,4 +25,12 @@ a {
 }
 a:hover {
     color: #c88d28;
+}
+
+.bootstrap-filestyle > .form-control {
+    z-index: 9;
+}
+
+span.group-span-filestyle.input-group-btn {
+    z-index: 2;
 }

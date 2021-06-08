@@ -69,7 +69,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->addedAt = new \DateTime('now');
         $this->series = new ArrayCollection();
         $this->schedules = new ArrayCollection();
         $this->programs = new ArrayCollection();
@@ -273,5 +272,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    public function getFullname()
+    {
+        return $this->getFirstname() . ' ' . $this->getLastname();
     }
 }

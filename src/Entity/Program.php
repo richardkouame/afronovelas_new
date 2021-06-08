@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Traits\Timestampable;
 use App\Repository\ProgramRepository;
+use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -36,6 +37,9 @@ class Program
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $trailerLink;
+
+
+    private $imageFile;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -88,7 +92,7 @@ class Program
 
     public function getSynopsis(): ?string
     {
-        return $this->synopsis;
+        return strip_tags($this->synopsis);
     }
 
     public function setSynopsis(?string $synopsis): self
@@ -108,6 +112,19 @@ class Program
         $this->trailerLink = $trailerLink;
 
         return $this;
+    }
+
+
+    public function setImageFile($imageFile)
+    {
+        $this->imageFile = $imageFile;
+
+        return $this;
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 
     public function getImage(): ?string
@@ -198,5 +215,21 @@ class Program
         }
 
         return $this;
+    }
+
+    public function getSlug()
+    {
+       $slug = new Slugify();
+       return $slug->slugify($this->getTitle());
+    }
+
+    public function getGenderList()
+    {
+        $list = '';
+        foreach ($this->getGender() as $gender) {
+            $list .= '<span class="badge badge-success">' . $gender->getTitle() . '</span> ';
+        }
+
+        return $list;
     }
 }

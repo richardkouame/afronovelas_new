@@ -8,34 +8,11 @@
 
 {% block body %}
 
-    <!-- Begin page -->
-    <div id="layout-wrapper">
+    <!-- start page title -->
+    <h1 align="center">Bienvenue sur le panneau d'administration</h1>
+    <!-- end page title -->
 
-        {% include 'admin/includes/header.html.twig' %}
-
-        <!-- ============================================================== -->
-        <!-- Start right Content here -->
-        <!-- ============================================================== -->
-        <div class="main-content">
-
-            <div class="page-content">
-                <div class="container-fluid">
-
-                    <!-- start page title -->
-                    <h1 align="center">Bienvenue sur le panneau d'administration</h1>
-                    <!-- end page title -->
-
-                </div> <!-- container-fluid -->
-            </div>
-            <!-- End Page-content -->
-
-            {% include 'admin/includes/footer.html.twig' %}
-
-        </div>
-        <!-- end main content-->
-
-    </div>
-    <!-- END layout-wrapper -->
+    {% include 'admin/includes/footer.html.twig' %}
 
 {% endblock %}
 
