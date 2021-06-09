@@ -25,7 +25,7 @@
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{ app.user.fullname }}
+                        {{ app.user ? app.user.fullname }}
                     <img class="rounded-circle header-profile-user" src="{{ asset('assets/images/users/user-4.jpg') }}"
                          alt="Header Avatar">
                 </button>

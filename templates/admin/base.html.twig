@@ -26,9 +26,9 @@
 <body data-sidebar='dark'>
 
         <div id="layout-wrapper">
-
+            {% if no_header is not defined %}
             {% include 'admin/includes/header.html.twig' %}
-
+            {% endif %}
             <div class="main-content">
 
                 <div class="page-content">
