@@ -35,6 +35,8 @@ class Serie
      */
     private $trailerLink;
 
+    private $imageFile;
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -84,6 +86,18 @@ class Serie
         $this->trailerLink = $trailerLink;
 
         return $this;
+    }
+
+    public function setImageFile($imageFile)
+    {
+        $this->imageFile = $imageFile;
+
+        return $this;
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 
     public function getImage(): ?string

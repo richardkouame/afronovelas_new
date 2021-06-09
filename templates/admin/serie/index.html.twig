@@ -1,0 +1,88 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Series{% endblock %}
+
+{% block stylesheets %}
+    <!-- Lightbox css -->
+    <link href="{{ asset('assets/libs/magnific-popup/magnific-popup.css') }}" rel="stylesheet" type="text/css" />
+    <!-- DataTables -->
+    <link href="{{ asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body %}
+    {% for flash_ in app.flashes('success') %}
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-success" role="alert">{{ flash_ | raw }}</div>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="row align-items-center">
+        <div class="col-sm-6">
+            <div class="page-title-box">
+                <h4 class="font-size-18">Series</h4>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="float-right d-none d-md-block">
+                <a href="{{ path('admin_serie_new') }}" class="btn btn-primary">Ajouter série</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <h4 class="card-title">Series</h4>
+
+                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Titre</th>
+                            <th>Synopsis</th>
+                            <th>Lien</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for serie in series %}
+                            <tr>
+                                <td>
+                                    <a class="image-popup-no-margins" href="{{ asset('images/novelas/' ~ serie.image) }}">
+                                        <img class="img-fluid" alt="" src="{{ asset('images/novelas/' ~ serie.image) }}" width="45">
+                                    </a>
+                                </td>
+                                <td>{{ serie.title }}</td>
+                                <td>{{ serie.synopsis | striptags }}</td>
+                                <td>{{ serie.trailerLink }}</td>
+                                <td>
+                                    <a href="{{ path('admin_serie_edit', {id: serie.id}) }}" class="btn btn-warning"><i class="fas fa-pen-alt"></i></a>
+                                    <a href="#" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <!-- Magnific Popup-->
+    <script src="{{ asset('assets/libs/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
+    <!-- Tour init js-->
+    <script src="{{ asset('assets/js/pages/lightbox.init.js') }}"></script>
+    <!-- Required datatable js -->
+    <script src="{{ asset('assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js') }}"></script>
+    <!-- Datatable init js -->
+    <script src="{{ asset('assets/js/pages/datatables.init.js') }}"></script>
+{% endblock %}
