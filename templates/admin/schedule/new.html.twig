@@ -1,0 +1,76 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Ajout de programmes{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('assets/libs/jquery-datetime-picker/jquery.datetimepicker.min.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body %}
+    <div class="row align-items-center">
+        <div class="col-sm-6">
+            <div class="page-title-box">
+                <h4 class="font-size-18">Grille TV</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mx-auto col-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Ajout de programme</h4>
+                    {{ form_start(scheduleForm, {attr: {class: 'outer-repeater'}}) }}
+                    <div data-repeater-list="outer-group" class="outer">
+                        <div data-repeater-item class="outer">
+                            <div class="row">
+                                <div class="col-12">
+                                    {{ form_row(scheduleForm.title) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    {{ form_row(scheduleForm.status) }}
+                                </div>
+                            </div>
+                            <p>Programmation de temps</p>
+                            <div class="inner-repeater mb-4">
+                                <div data-repeater-list="inner-group" class="inner form-group">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            {{ form_label(scheduleForm.passageTab) }}
+                                            <div data-repeater-item class="inner mb-3 row">
+                                                <div class="col-4">
+                                                 {{ form_widget(scheduleForm.passageTab, {id: false}) }}
+                                                </div>
+                                                <div class="col-2">
+                                                    <input data-repeater-delete type="button" class="btn btn-primary inner" value="-"/>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <input data-repeater-create type="button" class="btn btn-success inner" value="Ajouter heure"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 mx-auto">
+                                    <button type="submit" class="btn btn-primary btn-block">Ajouter</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{ form_end(scheduleForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/libs/jquery-datetime-picker/jquery.datetimepicker.full.min.js') }}"></script>
+    <!-- form repeater js -->
+    <script src="{{ asset('assets/libs/jquery.repeater/jquery.repeater.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/form-repeater.int.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/form-advanced.init.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/form-editor.init.js') }}"></script>
+{% endblock %}

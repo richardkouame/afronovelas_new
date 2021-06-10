@@ -21,12 +21,15 @@ class Schedule
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="string", length=255)
      */
-    private $Passage;
+    private $title;
+
+
+    private $passageTab;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="boolean")
      */
     private $status;
 
@@ -36,25 +39,14 @@ class Schedule
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Program::class, inversedBy="schedules")
+     * @ORM\Column(type="array")
      */
-    private $program;
+    private $passage = [];
+
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getPassage(): ?\DateTimeInterface
-    {
-        return $this->Passage;
-    }
-
-    public function setPassage(\DateTimeInterface $Passage): self
-    {
-        $this->Passage = $Passage;
-
-        return $this;
     }
 
     public function getStatus(): ?string
@@ -62,7 +54,7 @@ class Schedule
         return $this->status;
     }
 
-    public function setStatus(string $status): self
+    public function setStatus(bool $status): self
     {
         $this->status = $status;
 
@@ -81,15 +73,44 @@ class Schedule
         return $this;
     }
 
-    public function getProgram(): ?Program
+
+    public function getTitle(): ?string
     {
-        return $this->program;
+        return $this->title;
     }
 
-    public function setProgram(?Program $program): self
+    public function setTitle(string $title): self
     {
-        $this->program = $program;
+        $this->title = $title;
 
         return $this;
+    }
+
+    public function getPassage(): ?array
+    {
+        return $this->passage;
+    }
+
+    public function setPassage(array $passage): self
+    {
+        $this->passage = $passage;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPassageTab()
+    {
+        return $this->passageTab;
+    }
+
+    /**
+     * @param mixed $passageTab
+     */
+    public function setPassageTab($passageTab): void
+    {
+        $this->passageTab = $passageTab;
     }
 }

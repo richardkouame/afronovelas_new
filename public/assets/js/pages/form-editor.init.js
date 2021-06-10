@@ -5,5 +5,15 @@ $(document).ready(function () {
         menubar: false,
         toolbar: "insertfile undo redo | bold italic | emoticons",
         content_style:''
+    });
+
+   /* 0 <  $("input.timepicker").datetimepicker({
+        datepicker: false,
+        format: 'H:i',
+        step: 5,
+        mask: true
+    });*/
+    $('.timepicker').on('click', function () {
+        alert('ok');
     })
 });

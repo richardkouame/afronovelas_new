@@ -64,15 +64,9 @@ class Program
      */
     private $user;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Schedule::class, mappedBy="program")
-     */
-    private $schedules;
-
     public function __construct()
     {
         $this->gender = new ArrayCollection();
-        $this->schedules = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -189,35 +183,6 @@ class Program
         return $this;
     }
 
-    /**
-     * @return Collection|Schedule[]
-     */
-    public function getSchedules(): Collection
-    {
-        return $this->schedules;
-    }
-
-    public function addSchedule(Schedule $schedule): self
-    {
-        if (!$this->schedules->contains($schedule)) {
-            $this->schedules[] = $schedule;
-            $schedule->setProgram($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSchedule(Schedule $schedule): self
-    {
-        if ($this->schedules->removeElement($schedule)) {
-            // set the owning side to null (unless already changed)
-            if ($schedule->getProgram() === $this) {
-                $schedule->setProgram(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getSlug()
     {
