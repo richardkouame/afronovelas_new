@@ -8,6 +8,7 @@ use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProgramRepository::class)
@@ -48,6 +49,7 @@ class Program
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex("/^\d{2}x\d{2}/")
      */
     private $format;
 

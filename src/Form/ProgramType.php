@@ -19,17 +19,22 @@ class ProgramType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Titre'
+                'label' => 'Titre',
+                'attr' => [
+                    'placeholder' => 'Le titre du programme'
+                ]
             ])
             ->add('synopsis', TextareaType::class, [
                 'label' => 'Synopsis',
                 'required' => false,
                 'attr' => [
-                    'class' => 'cms'
+                    'class' => 'cms',
+                    'placeholder' => 'Le synopsis du programme'
                 ]
             ])
             ->add('trailerLink', TextType::class, [
                 'label' => "Lien de visualisation",
+                'required' => false,
                 'attr' => [
                     'placeholder' => 'https://vimeo.com/_____',
                 ]
@@ -39,7 +44,7 @@ class ProgramType extends AbstractType
                 'required' => false,
                 'label' => 'Choisir une image (1920 x 800)',
                 'attr' => [
-                    'class' => 'filestyle'
+                    'class' => 'filestyle',
                 ],
                 'constraints' => [
                     new File([
@@ -51,7 +56,12 @@ class ProgramType extends AbstractType
                 ],
             ])
             ->add('format', TextType::class, [
-                'label' => 'Format'
+                'label' => 'Format',
+                'attr' => [
+                    'placeholder' => 'Ex: 22x56',
+                    'pattern' => '/^\d{2}x\d{2}/',
+                    'title' => 'Ex: 22x56'
+                ]
             ])
             ->add('gender', EntityType::class, [
                 'label' => 'Genre',
