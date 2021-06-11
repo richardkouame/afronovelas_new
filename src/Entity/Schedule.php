@@ -79,7 +79,7 @@ class Schedule
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle($title): self
     {
         $this->title = $title;
 
@@ -113,4 +113,15 @@ class Schedule
     {
         $this->passageTab = $passageTab;
     }
+
+    public function getTime()
+    {
+        $list = '';
+        foreach ($this->getPassage() as $passage) {
+            $list .= '<span class="badge badge-info"><i class="fa fa-clock"></i> ' . $passage . '</span> ';
+        }
+
+        return $list;
+    }
+
 }

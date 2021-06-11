@@ -194,25 +194,27 @@
 									
 								  	<tbody class="text-center">
 								  		{% for el in tvguide %}
-										    <tr class="{% if el.rowspan %} new-block {% endif %}">
+											{% for time in el.passage %}
+										    <tr class="">
 										    	<td>
 										    		<span class="font-avenir-bold text-light hour" style="font-size:1.8rem">
-										    			{{el.hour}}
+										    			{{ time }}
 										    		</span>
 										    	</td>
 										    	
 										      	<td class="text-left">
 										      		<h1 style="font-size: 2.1rem;" class="text-light font-avenir-bold">
-									        			{{el.name|lower|title}}
+									        			{{el.title|lower|title}}
 									        		</h1>
 										      	</td>
 
 										      	<td class="d-none d-md-block" style="vertical-align: middle;">
 										      		<label class="badge font-avant-garde-xlt text-uppercase font-weight-bold" style="letter-spacing:.1rem;border:1px solid #cd922a;color:#cd922a">
-									        			{{ el.new_episode ? "Nouvel épisode" : "Rediffusion" }}
+									        			{{ el.status ? "Nouvel épisode" : "Rediffusion" }}
 									        		</label>
 										      	</td>
 										    </tr>
+											{% endfor %}
 										{% endfor %}
 								  	</tbody>
 								</table> 

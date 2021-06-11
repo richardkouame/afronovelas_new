@@ -17,6 +17,7 @@ class ScheduleType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
+                'mapped' => false,
                 'attr' => [
                     'placeholder' => 'Titre du programme'
                     ],
@@ -27,9 +28,6 @@ class ScheduleType extends AbstractType
                     'class' => 'timepicker'
                 ],
                 'mapped' => false
-            ])
-            ->add('status', CheckboxType::class, [
-                'label' => 'Nouveau épisode ?'
             ])
         ;
     }

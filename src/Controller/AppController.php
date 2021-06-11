@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ProgramRepository;
+use App\Repository\ScheduleRepository;
 use App\Repository\SerieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,7 +14,7 @@ class AppController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function index(ProgramRepository $programRepository, SerieRepository $serieRepository): Response
+    public function index(ProgramRepository $programRepository, SerieRepository $serieRepository, ScheduleRepository $scheduleRepository): Response
     {
 
         return $this->render('front/index.html.twig', [
@@ -21,7 +22,7 @@ class AppController extends AbstractController
             'banner_data' => $programRepository->findAll(),
             'bouquets' => null,
             'novelas' => $serieRepository->findAll(),
-            'tvguide' => null
+            'tvguide' => $scheduleRepository->findAll()
         ]);
     }
 }

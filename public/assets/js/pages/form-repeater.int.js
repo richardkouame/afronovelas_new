@@ -1,6 +1,7 @@
 $(document).ready(function () {
     "use strict";
     $(".repeater").repeater({
+        isFirstItemUndeletable: true,
         defaultValues: {
             "textarea-input": "foo",
             "text-input": "bar",
@@ -16,16 +17,21 @@ $(document).ready(function () {
     }), window.outerRepeater = $(".outer-repeater").repeater({
         defaultValues: {"text-input": "outer-default"},
         show: function () {
-            console.log("outer show"), $(this).slideDown()
+            $(this).slideDown()
         },
         hide: function (e) {
-            console.log("outer delete"), $(this).slideUp(e)
+            $(this).slideUp(e)
         },
         repeaters: [{
             selector: ".inner-repeater",
-            defaultValues: {"inner-text-input": "inner-default"},
             show: function () {
                 //console.log("inner show"), $(this).slideDown()
+                $(this).children('div').children('input.timepicker').datetimepicker({
+                    datepicker: false,
+                    format: 'H:i',
+                    step: 5,
+                    mask: true
+                });
                 $(this).slideDown()
             },
             hide: function (e) {

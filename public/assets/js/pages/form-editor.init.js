@@ -1,3 +1,4 @@
+// Le document ready c'est pour initialisé le jQuery de javascript
 $(document).ready(function () {
     0 < $("textarea.cms").length && tinymce.init({
         selector: "textarea.cms",
@@ -7,13 +8,11 @@ $(document).ready(function () {
         content_style:''
     });
 
-   /* 0 <  $("input.timepicker").datetimepicker({
+   0 <  $("input.timepicker").datetimepicker({
         datepicker: false,
         format: 'H:i',
         step: 5,
         mask: true
-    });*/
-    $('.timepicker').on('click', function () {
-        alert('ok');
-    })
+    });
+
 });
