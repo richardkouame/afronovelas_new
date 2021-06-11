@@ -25,10 +25,12 @@ class TvChanel
      */
     private $title;
 
+    private $imageFile;
+
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $link;
+    private $image;
 
     public function getId(): ?int
     {
@@ -47,16 +49,32 @@ class TvChanel
         return $this;
     }
 
-    public function getLink(): ?string
+    public function setImageFile($imageFile)
     {
-        return $this->link;
-    }
-
-    public function setLink(string $link): self
-    {
-        $this->link = $link;
+        $this->imageFile = $imageFile;
 
         return $this;
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image): void
+    {
+        $this->image = $image;
     }
 
 }

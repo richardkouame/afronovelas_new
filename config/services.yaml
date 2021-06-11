@@ -6,6 +6,7 @@
 parameters:
     programs_directory: '%kernel.project_dir%/public/images/banner'
     series_directory: '%kernel.project_dir%/public/images/novelas'
+    bouquets_directory: '%kernel.project_dir%/public/images/bouquets'
 
 services:
     # default configuration for services in *this* file
