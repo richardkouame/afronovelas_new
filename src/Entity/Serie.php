@@ -123,4 +123,9 @@ class Serie
 
         return $this;
     }
+
+    public function getShortSynopsis()
+    {
+        return mb_strimwidth(strip_tags($this->getSynopsis()), 0, 50, '...');
+    }
 }

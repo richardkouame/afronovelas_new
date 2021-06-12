@@ -15,7 +15,7 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        /*$faker = Factory::create('fr_FR');
+        $faker = Factory::create('fr_FR');
         $user = (new User())
             ->setFirstname("demo")
             ->setLastname("demo")
@@ -25,7 +25,7 @@ class AppFixtures extends Fixture
 
         $manager->persist($user);
 
-        for($i=0; $i < 5; $i++) {
+        /*for($i=0; $i < 5; $i++) {
             $user = (new User())
                 ->setFirstname($faker->firstName)
                 ->setLastname($faker->lastName)

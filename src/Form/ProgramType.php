@@ -59,7 +59,6 @@ class ProgramType extends AbstractType
                 'label' => 'Format',
                 'attr' => [
                     'placeholder' => 'Ex: 22x56',
-                    'pattern' => '/^\d{2}x\d{2}/',
                     'title' => 'Ex: 22x56'
                 ]
             ])

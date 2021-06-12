@@ -15,15 +15,15 @@
 				Guide Tv
 			</a>
 
-			<a href="/conditions-generales-de-vente" class="list-group-item list-group-item-action ">
+			<a href="{{ path('front_cgv') }}" class="list-group-item list-group-item-action ">
 				Conditions générales de ventes
 			</a>
 
-			<a href="/conditions-generales-d-utilisation" class="list-group-item list-group-item-action">
+			<a href="{{ path('front_cgu') }}" class="list-group-item list-group-item-action">
 				Conditions générales d'utilisations
 			</a>
 
-			<a href="/politiques-de-confidentialite" class="list-group-item list-group-item-action">
+			<a href="{{ path('front_pdc') }}" class="list-group-item list-group-item-action">
 				Politiques de confidentialité
 			</a>
 		</div>
@@ -75,12 +75,12 @@
 									<li class="menu-divider"></li>
 									<li >
 										<a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											{{ app.request.attributes.get("_locale")|upper }}
+											{{ app.request.attributes.get("_locale")|upper }}{{ dump(app.request) }}
 										</a>
 
 										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-						    				<a class="dropdown-item" href="/switch-lang/en">Anglais</a>
-						    				<a class="dropdown-item" href="/switch-lang/fr">Français</a>
+						    				<a class="dropdown-item" href="{{ path('switch_lang', { _locale:'en' } ) }}">Anglais</a>
+						    				<a class="dropdown-item" href="{{ path('switch_lang', { _locale:'fr' } ) }}">Français</a>
 						  				</div>
 									</li>
 								</ul>

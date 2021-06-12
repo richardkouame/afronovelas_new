@@ -58,7 +58,7 @@
                                     </a>
                                 </td>
                                 <td>{{ serie.title }}</td>
-                                <td>{{ serie.synopsis | striptags }}</td>
+                                <td>{{ serie.shortSynopsis }}</td>
                                 <td>{{ serie.trailerLink }}</td>
                                 <td>
                                     <a href="{{ path('admin_serie_edit', {id: serie.id}) }}" class="btn btn-warning"><i class="fas fa-pen-alt"></i></a>

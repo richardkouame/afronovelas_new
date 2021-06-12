@@ -138,11 +138,13 @@ jQuery(document).ready($=>{
         var name = parent.attr("data-name");
         var original_name = parent.attr("data-originalname");
         var synopsis = parent.attr("data-synopsis");
+        var trailer = parent.attr("data-trailer");
 
         modal.find(".selected-movie-image").attr("src",parent.find("img").attr("src"));
         modal.find(".selected-movie-title").html(name);
         modal.find(".selected-movie-subtitle").html(original_name);
         modal.find(".selected-movie-desc").html(synopsis);
+        modal.find(".selected-movie-trailer-link").attr("href", trailer);
 
         modal.modal({
             backdrop:'static',

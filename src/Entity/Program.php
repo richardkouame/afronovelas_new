@@ -199,4 +199,9 @@ class Program
 
         return $list;
     }
+
+    public function getShortSynopsis()
+    {
+        return mb_strimwidth(strip_tags($this->getSynopsis()), 0, 50, '...');
+    }
 }
