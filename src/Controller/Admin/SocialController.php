@@ -2,6 +2,8 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Social;
+use App\Form\SocialType;
 use App\Repository\SocialRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -36,6 +38,22 @@ class SocialController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        //$social
+        $social = new Social();
+        $form = $this->createForm(SocialType::class, $social);
+        $form->handleRequest($form);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $this->manager->persist($social);
+            $this->manager->flush();
+
+            $this->addFlash('success', 'Ajouté avec <strong>succès</strong>');
+
+            return $this->redirectToRoute('admin_social_list');
+        }
+
+        return $this->render('admin/social/new.html.twig', [
+            'socialForm' => $form->createView()
+        ]);
     }
 }
