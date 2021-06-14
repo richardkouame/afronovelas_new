@@ -40,7 +40,7 @@ class SocialController extends AbstractController
     {
         $social = new Social();
         $form = $this->createForm(SocialType::class, $social);
-        $form->handleRequest($form);
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
