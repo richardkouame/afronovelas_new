@@ -52,7 +52,7 @@ jQuery(document).ready($=>{
 
                 var sm_offset = social_media.offset();
 
-                console.log(sm_offset.top+"/"+pos)
+                //console.log(sm_offset.top+"/"+pos)
                 
                 if(pos >= sm_offset.top){
                     social_media.addClass('active');
