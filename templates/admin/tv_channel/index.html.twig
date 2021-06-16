@@ -43,6 +43,8 @@
                         <tr>
                             <th>Image</th>
                             <th>Titre</th>
+                            <th>Lien</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
 
@@ -55,6 +57,7 @@
                                     </a>
                                 </td>
                                 <td>{{ tvchannel.title }}</td>
+                                <td>{{ tvchannel.link }}</td>
                                 <td>
                                     <a href="{{ path('admin_tvchannel_edit', {id: tvchannel.id}) }}" class="btn btn-warning"><i class="fas fa-pen-alt"></i></a>
                                     <a href="#" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>

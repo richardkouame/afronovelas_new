@@ -32,6 +32,11 @@ class TvChanel
      */
     private $image;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $link;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +80,18 @@ class TvChanel
     public function setImage($image): void
     {
         $this->image = $image;
+    }
+
+    public function getLink(): ?string
+    {
+        return $this->link;
+    }
+
+    public function setLink(?string $link): self
+    {
+        $this->link = $link;
+
+        return $this;
     }
 
 }

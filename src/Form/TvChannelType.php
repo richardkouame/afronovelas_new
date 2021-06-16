@@ -21,6 +21,12 @@ class TvChannelType extends AbstractType
                     'placeholder' => 'Nom de la chaîne tv'
                 ]
             ])
+            ->add('link', TextType::class, [
+                'label' => 'Lien',
+                'attr' => [
+                    'placeholder' => 'Lien de la tele'
+                ]
+            ])
             ->add('imageFile', FileType::class, [
                 'mapped' => false,
                 'required' => false,
