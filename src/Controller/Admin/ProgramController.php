@@ -90,4 +90,21 @@ class ProgramController extends AbstractController
             'programForm' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/delete/{id}", name="delete", methods={"POST"})
+     */
+    public function delete(Program $program, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('program'.$program->getId(), $request->request->get('_csrf_token'))) {
+            $entityManager->remove($program);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Supprime avec succes');
+
+            return $this->redirectToRoute('admin_program_liste');
+        }
+
+        return $this->redirectToRoute('admin_program_liste');
+    }
 }

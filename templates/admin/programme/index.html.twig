@@ -11,6 +11,13 @@
 {% endblock %}
 
 {% block body %}
+    {% for flash_ in app.flashes('success') %}
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-success" role="alert">{{ flash_ | raw }}</div>
+            </div>
+        </div>
+    {% endfor %}
     <div class="row align-items-center">
         <div class="col-sm-6">
             <div class="page-title-box">
@@ -59,7 +66,10 @@
                                 <td>{{ program.genderList | raw }}</td>
                                 <td>
                                     <a href="{{ path('admin_program_edit', {id: program.id}) }}" class="btn btn-warning"><i class="fas fa-pen-alt"></i></a>
-                                    <a href="#" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                    <a href="#" data-form="program-delete" class="btn btn-danger delete-element"><i class="fas fa-trash-alt"></i></a>
+                                    <form id="program-delete" action="{{ path('admin_program_delete', {id: program.id}) }}" method="post">
+                                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('program' ~ program.id) }}">
+                                    </form>
                                 </td>
                             </tr>
                         {% endfor %}
