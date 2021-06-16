@@ -34,3 +34,7 @@ a:hover {
 span.group-span-filestyle.input-group-btn {
     z-index: 2;
 }
+
+table.dataTable.nowrap th, table.dataTable.nowrap td {
+    white-space: normal;
+}

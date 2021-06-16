@@ -53,7 +53,7 @@
                                     </a>
                                 </td>
                                 <td>{{ program.title }}</td>
-                                <td>{{ program.shortSynopsis }}</td>
+                                <td>{{ program.synopsis | striptags }}</td>
                                 <td>{{ program.trailerLink }}</td>
                                 <td>{{ program.format }}</td>
                                 <td>{{ program.genderList | raw }}</td>
