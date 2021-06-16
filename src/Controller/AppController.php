@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\ProgramRepository;
 use App\Repository\ScheduleRepository;
 use App\Repository\SerieRepository;
+use App\Repository\SocialRepository;
 use App\Repository\TvChanelRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Cookie;
@@ -17,15 +18,20 @@ class AppController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function index(ProgramRepository $programRepository, SerieRepository $serieRepository, ScheduleRepository $scheduleRepository, TvChanelRepository $tvChanelRepository): Response
+    public function index(ProgramRepository $programRepository, SerieRepository $serieRepository, ScheduleRepository $scheduleRepository, TvChanelRepository $tvChanelRepository, SocialRepository $socialRepository): Response
     {
+        $facebook = $socialRepository->findOneBy(['title' => 'facebook']);
 
         return $this->render('front/index.html.twig', [
             'controller_name' => 'AppController',
             'banner_data' => $programRepository->findAll(),
             'bouquets' => $tvChanelRepository->findAll(),
             'novelas' => $serieRepository->findAll(),
-            'tvguide' => $scheduleRepository->findAll()
+            'tvguide' => $scheduleRepository->findAll(),
+            'facebook' => $socialRepository->findOneBy(['title' => 'facebook']),
+            'youtube' => $socialRepository->findOneBy(['title' => 'youtube']),
+            'instagram' => $socialRepository->findOneBy(['title' => 'instagram']),
+            'tiktok' => $socialRepository->findOneBy(['title' => 'tiktok']),
         ]);
     }
 

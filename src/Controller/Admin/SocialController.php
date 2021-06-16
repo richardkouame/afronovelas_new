@@ -56,4 +56,25 @@ class SocialController extends AbstractController
             'socialForm' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/edit/{id}", name="edit")
+     */
+    public function edit(Social $social, Request $request): Response
+    {
+        $form = $this->createForm(SocialType::class, $social);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->manager->flush();
+
+            $this->addFlash('success', 'Modifie avec succes');
+
+            return $this->redirectToRoute('admin_social_list');
+        }
+
+        return $this->render('admin/social/edit.html.twig', [
+            'socialForm' => $form->createView()
+        ]);
+    }
 }

@@ -11,6 +11,13 @@
 {% endblock %}
 
 {% block body %}
+    {% for flash_ in app.flashes('success') %}
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-success" role="alert">{{ flash_ | raw }}</div>
+            </div>
+        </div>
+    {% endfor %}
     <div class="row align-items-center">
         <div class="col-sm-6">
             <div class="page-title-box">
@@ -20,7 +27,7 @@
 
         <div class="col-sm-6">
             <div class="float-right d-none d-md-block">
-                <a href="{{ path('admin_program_new') }}" class="btn btn-primary">Ajouter un réseaux social</a>
+                <a href="{{ path('admin_social_new') }}" class="btn btn-primary">Ajouter un réseaux social</a>
             </div>
         </div>
     </div>
@@ -29,37 +36,23 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">Programmes</h4>
+                    <h4 class="card-title"></h4>
 
                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                         <tr>
-                            <th>Image</th>
                             <th>Titre</th>
-                            <th>Synopsis</th>
                             <th>Lien</th>
-                            <th>Format</th>
-                            <th>Genre</th>
-                            <th>Actions</th>
                         </tr>
                         </thead>
 
                         <tbody>
-                        {% for program in programmes %}
+                        {% for social in socials %}
                             <tr>
+                                <td>{{ social.title }}</td>
+                                <td><a href="{{ social.link }}" target="_blank">{{ social.link }}</a></td>
                                 <td>
-                                    <a class="image-popup-no-margins" href="{{ asset('images/banner/' ~ program.image) }}">
-                                        <img class="img-fluid" alt="" src="{{ asset('images/banner/' ~ program.image) }}" width="45">
-                                    </a>
-                                </td>
-                                <td>{{ program.title }}</td>
-                                <td>{{ program.shortSynopsis }}</td>
-                                <td>{{ program.trailerLink }}</td>
-                                <td>{{ program.format }}</td>
-                                <td>{{ program.genderList | raw }}</td>
-                                <td>
-                                    <a href="{{ path('admin_program_edit', {id: program.id}) }}" class="btn btn-warning"><i class="fas fa-pen-alt"></i></a>
-                                    <a href="#" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                    <a href="{{ path('admin_social_edit', {id: social.id}) }}" class="btn btn-warning"><i class="fas fa-pen-alt"></i></a>
                                 </td>
                             </tr>
                         {% endfor %}

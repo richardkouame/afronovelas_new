@@ -1,0 +1,51 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Modification de réseaux sociaux{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('assets/libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body %}
+    <div class="row align-items-center">
+        <div class="col-sm-6">
+            <div class="page-title-box">
+                <h4 class="font-size-18">Réseaux sociaux</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mx-auto col-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Modification de réseaux sociaux</h4>
+                    {{ form_start(socialForm) }}
+                    <div class="row">
+                        <div class="col-12">
+                            {{ form_row(socialForm.title) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            {{ form_row(socialForm.link) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 mx-auto">
+                            <button type="submit" class="btn btn-primary btn-block">Modifier</button>
+                        </div>
+                    </div>
+                    {{ form_end(socialForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/libs/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/admin-resources/bootstrap-filestyle/bootstrap-filestyle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/form-advanced.init.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/form-editor.init.js') }}"></script>
+{% endblock %}
