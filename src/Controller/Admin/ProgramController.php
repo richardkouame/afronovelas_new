@@ -66,13 +66,19 @@ class ProgramController extends AbstractController
     /**
      * @Route("/edit/{id}", name="edit")
      */
-    public function edit(Program $program, Request $request, EntityManagerInterface $entityManager): Response
+    public function edit(Program $program, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
     {
         $form = $this->createForm(ProgramType::class, $program);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $imageFile = $form->get('imageFile')->getData();
+            if ($imageFile) {
+                $imageFileName = $fileUploader->upload($imageFile, $program->getTitle());
+                $program->setImage($imageFileName);
+            }
 
             $entityManager->persist($program);
             $entityManager->flush();

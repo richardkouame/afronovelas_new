@@ -17,6 +17,8 @@ class FooterBanner
      */
     private $id;
 
+    private $imageFile;
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -30,6 +32,18 @@ class FooterBanner
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setImageFile($imageFile)
+    {
+        $this->imageFile = $imageFile;
+
+        return $this;
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 
     public function getImage(): ?string

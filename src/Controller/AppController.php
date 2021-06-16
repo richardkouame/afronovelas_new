@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\FooterBannerRepository;
 use App\Repository\ProgramRepository;
 use App\Repository\ScheduleRepository;
 use App\Repository\SerieRepository;
@@ -19,9 +20,10 @@ class AppController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function index(ProgramRepository $programRepository, SerieRepository $serieRepository, ScheduleRepository $scheduleRepository, TvChanelRepository $tvChanelRepository, SocialRepository $socialRepository, SloganRepository $sloganRepository): Response
+    public function index(ProgramRepository $programRepository, SerieRepository $serieRepository, ScheduleRepository $scheduleRepository, TvChanelRepository $tvChanelRepository, SocialRepository $socialRepository, SloganRepository $sloganRepository, FooterBannerRepository $footerBannerRepository): Response
     {
         $slogan = $sloganRepository->findAll();
+        $footerBanner = $footerBannerRepository->findAll();
 
         return $this->render('front/index.html.twig', [
             'controller_name' => 'AppController',
@@ -30,6 +32,7 @@ class AppController extends AbstractController
             'novelas' => $serieRepository->findAll(),
             'tvguide' => $scheduleRepository->findAll(),
             'slogan' => $slogan[0],
+            'footerBanner' => $footerBanner[0],
             'facebook' => $socialRepository->findOneBy(['title' => 'facebook']),
             'youtube' => $socialRepository->findOneBy(['title' => 'youtube']),
             'instagram' => $socialRepository->findOneBy(['title' => 'instagram']),
