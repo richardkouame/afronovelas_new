@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\ProgramRepository;
 use App\Repository\ScheduleRepository;
 use App\Repository\SerieRepository;
+use App\Repository\SloganRepository;
 use App\Repository\SocialRepository;
 use App\Repository\TvChanelRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,9 +19,9 @@ class AppController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function index(ProgramRepository $programRepository, SerieRepository $serieRepository, ScheduleRepository $scheduleRepository, TvChanelRepository $tvChanelRepository, SocialRepository $socialRepository): Response
+    public function index(ProgramRepository $programRepository, SerieRepository $serieRepository, ScheduleRepository $scheduleRepository, TvChanelRepository $tvChanelRepository, SocialRepository $socialRepository, SloganRepository $sloganRepository): Response
     {
-        $facebook = $socialRepository->findOneBy(['title' => 'facebook']);
+        $slogan = $sloganRepository->findAll();
 
         return $this->render('front/index.html.twig', [
             'controller_name' => 'AppController',
@@ -28,6 +29,7 @@ class AppController extends AbstractController
             'bouquets' => $tvChanelRepository->findAll(),
             'novelas' => $serieRepository->findAll(),
             'tvguide' => $scheduleRepository->findAll(),
+            'slogan' => $slogan[0],
             'facebook' => $socialRepository->findOneBy(['title' => 'facebook']),
             'youtube' => $socialRepository->findOneBy(['title' => 'youtube']),
             'instagram' => $socialRepository->findOneBy(['title' => 'instagram']),
