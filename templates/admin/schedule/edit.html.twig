@@ -27,37 +27,43 @@
                                     {{ form_row(scheduleForm.title, {value: title }) }}
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <div class="form-check">
-                                            <input type="checkbox" id="schedule_status" name="status" class="form-check-input" {{ status ? 'checked' }} >
-                                            <label class="form-check-label" for="schedule_status">Nouvel épisode ?</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <p>Programmation de temps</p>
                             <div class="inner-repeater mb-4">
                                 <div data-repeater-list="inner-group" class="inner form-group">
                                     <div class="row">
                                         <div class="col-12">
                                             <label for="form_passageTab" class="required">Heure de passage</label>
-                                            {% for passage in passages %}
-                                                <div data-repeater-item class="inner mb-3 row">
-                                                    <div class="col-4">
-                                                        <input type="text" id="" name="passageTab" required="required" class="timepicker form-control" value="{{ passage }}">
-                                                    </div>
-                                                    <div class="col-2">
-                                                        <input data-repeater-delete type="button" class="btn btn-primary inner" value="-"/>
+                                            <div data-repeater-item class="inner mb-3 row">
+                                                <div class="col-4">
+                                                    <input type="text" id="" name="passageTab" required="required" class="timepicker form-control" value="{{ passage }}">
+                                                </div>
+
+                                                <div class="col-3">
+                                                    <div class="form-group">
+                                                        <div class="form-check">
+                                                            <input type="checkbox" id="schedule_status" name="status" class="form-check-input" value="1">
+                                                            <label class="form-check-label" for="schedule_status">Nouvel épisode ?</label>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            {% endfor %}
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <select name="bloc" id="" class="select" required>
+                                                            <option value="">Choisir le bloc</option>
+                                                            <option value="bloc1" {{ bloc == 'bloc1' ? 'selected = "selected"' }}>Bloc 1</option>
+                                                            <option value="bloc2" {{ bloc == 'bloc2' ? 'selected = "selected"' }}>Bloc 2</option>
+                                                            <option value="bloc3" {{ bloc == 'bloc3' ? 'selected = "selected"' }}>Bloc 3</option>
+                                                            <option value="bloc4" {{ bloc == 'bloc4' ? 'selected = "selected"' }}>Bloc 4</option>
+                                                            <option value="bloc5" {{ bloc == 'bloc5' ? 'selected = "selected"' }}>Bloc 5</option>
+                                                            <option value="bloc6" {{ bloc == 'bloc6' ? 'selected = "selected"' }}>Bloc 6</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <input data-repeater-create type="button" class="btn btn-success inner" value="Ajouter heure"/>
                             </div>
                             <div class="row">
                                 <div class="col-6 mx-auto">

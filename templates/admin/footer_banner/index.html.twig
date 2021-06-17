@@ -11,6 +11,13 @@
 {% endblock %}
 
 {% block body %}
+    {% for flash_ in app.flashes('success') %}
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-success" role="alert">{{ flash_ | raw }}</div>
+            </div>
+        </div>
+    {% endfor %}
     <div class="row align-items-center">
         <div class="col-sm-6">
             <div class="page-title-box">
