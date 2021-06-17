@@ -796,3 +796,7 @@ section.slogan h4{
 .vbox-overlay {
 	z-index: 2000;
 }
+
+.table-noborder {
+	border-top: none !important;
+}

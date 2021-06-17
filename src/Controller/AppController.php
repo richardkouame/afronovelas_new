@@ -18,19 +18,27 @@ use Symfony\Component\Routing\Annotation\Route;
 class AppController extends AbstractController
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="homepage", requirements={"_locale": "en|fr"})
      */
-    public function index(ProgramRepository $programRepository, SerieRepository $serieRepository, ScheduleRepository $scheduleRepository, TvChanelRepository $tvChanelRepository, SocialRepository $socialRepository, SloganRepository $sloganRepository, FooterBannerRepository $footerBannerRepository): Response
+    public function index(Request $request, ProgramRepository $programRepository, SerieRepository $serieRepository, ScheduleRepository $scheduleRepository, TvChanelRepository $tvChanelRepository, SocialRepository $socialRepository, SloganRepository $sloganRepository, FooterBannerRepository $footerBannerRepository): Response
     {
         $slogan = $sloganRepository->findAll();
         $footerBanner = $footerBannerRepository->findAll();
+
+        $schedules = $scheduleRepository->findAll();
+
+        $grouped_schedules = array();
+
+        foreach($schedules as $schedule){
+            $grouped_schedules[$schedule->getBloc()][] = $schedule;
+        }
 
         return $this->render('front/index.html.twig', [
             'controller_name' => 'AppController',
             'banner_data' => $programRepository->findAll(),
             'bouquets' => $tvChanelRepository->findAll(),
             'novelas' => $serieRepository->findAll(),
-            'tvguide' => $scheduleRepository->findAll(),
+            'tvguide' => $grouped_schedules,
             'slogan' => $slogan[0],
             'footerBanner' => $footerBanner[0],
             'facebook' => $socialRepository->findOneBy(['title' => 'facebook']),
@@ -77,6 +85,7 @@ class AppController extends AbstractController
      */
     public function switch_lang($_locale, Request $request): Response
     {
+        //$_locale = $request->getLocale();
 
         $cookie = new Cookie("_locale",$_locale);
 

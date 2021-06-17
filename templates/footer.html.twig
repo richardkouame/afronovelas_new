@@ -18,15 +18,15 @@
 					<li>
 
 						<div class="d-flex flex-row flex-wrap">
-							<a href="{{ facebook.link }}">
+							<a href="{% if facebook is defined %}{{ facebook.link }} {% else %} # {% endif %}">
 								<img src="{{ asset('images/fb-b.png') }}" alt="">
 							</a>
 
-							<a href="{{ youtube.link }}" class="mx-2">
+							<a href="{% if youtube is defined %}{{ youtube.link }} {% else %} # {% endif %}" class="mx-2">
 								<img src="{{ asset('images/yb.png') }}" alt="">
 							</a>
 
-							<a href="{{ tiktok.link }}">
+							<a href="{% if tiktok is defined %}{{ tiktok.link }} {% else %} # {% endif %}">
 								<img src="{{ asset('images/tik.png') }}" alt="">
 							</a>
 						</div>

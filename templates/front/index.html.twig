@@ -185,37 +185,41 @@
 
 					<div class="row">
 						<div class="col-md-8 mb-sm-3">
-							
+
 							<div class="row mt-4">
 
 								<table id="tvguide" class="table table-sm font-avenir-regular">
-									
-								  	<tbody class="text-center">
-								  		{% for el in tvguide %}
-											{% for time in el.passage %}
-										    <tr class="">
-										    	<td>
-										    		<span class="font-avenir-bold text-light hour" style="font-size:1.8rem">
-										    			{{ time }}
-										    		</span>
-										    	</td>
-										    	
-										      	<td class="text-left">
-										      		<h1 style="font-size: 2.1rem;" class="text-light font-avenir-bold">
-									        			{{el.title|lower|title}}
-									        		</h1>
-										      	</td>
 
-										      	<td class="d-none d-md-block" style="vertical-align: middle;">
-										      		<label class="badge font-avant-garde-xlt text-uppercase font-weight-bold" style="letter-spacing:.1rem;border:1px solid #cd922a;color:#cd922a">
-									        			{{ el.status ? "Nouvel épisode" : "Rediffusion" }}
-									        		</label>
-										      	</td>
-										    </tr>
-											{% endfor %}
-										{% endfor %}
-								  	</tbody>
-								</table> 
+									<tbody class="text-center">
+									{% for i in 1..tvguide|length %}
+										<tr class="new-block">
+											<td class="table-noborder">
+												{% for el in tvguide['bloc' ~ i] %}
+													<tr>
+														<td>
+															<span class="font-avenir-bold text-light hour" style="font-size:1.8rem">
+																{{el.passage}}
+															</span>
+														</td>
+
+														<td class="text-left">
+															<h1 style="font-size: 2.1rem;" class="text-light font-avenir-bold">
+																{{el.title|lower|title}}
+															</h1>
+														</td>
+
+														<td class="d-none d-md-block" style="vertical-align: middle;">
+															<label class="badge font-avant-garde-xlt text-uppercase font-weight-bold" style="letter-spacing:.1rem;border:1px solid #cd922a;color:#cd922a">
+																{{ el.status ? "Nouvel épisode" : "Rediffusion" }}
+															</label>
+														</td>
+													</tr>
+												{% endfor %}
+											</td>
+										</tr>
+									{% endfor %}
+									</tbody>
+								</table>
 							</div>
 						</div>
 
@@ -225,11 +229,7 @@
 								RESEAUX SOCIAUX
 							</h4>
 
-							<div id="social-media-section" class="fb-page text-center" data-href="https://www.facebook.com/afronovelas" data-tabs="timeline, events, messages" data-width="" data-height="620" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-								<blockquote cite="https://www.facebook.com/afronovelas" class="fb-xfbml-parse-ignore">
-									<a href="https://www.facebook.com/afronovelas">Afro Novelas</a>
-								</blockquote>
-							</div>
+							<div id="social-media-section" class="fb-page text-center" data-href="https://www.facebook.com/afronovelas" data-tabs="timeline, events, messages" data-width="" data-height="620" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/afronovelas" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/afronovelas">Afro Novelas</a></blockquote></div>
 
 
 						</div>
