@@ -4,6 +4,8 @@ $(document).ready(function () {
         selector: "textarea.cms",
         height: 300,
         menubar: false,
+        plugins: ["paste"],
+        paste_as_text: true,
         toolbar: "insertfile undo redo | bold italic | emoticons",
         content_style:''
     });
