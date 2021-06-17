@@ -209,7 +209,7 @@ jQuery(document).ready($=>{
             var old_scrolltop = $("html, body").scrollTop();
 
             timerid = setTimeout(()=>{
-                var vimeo_url = el.attr("data-id");
+                var vimeo_url = el.attr("data-trailer");
 
                 var options = {
                     url:vimeo_url,
@@ -278,7 +278,7 @@ jQuery(document).ready($=>{
 
                 }
                 
-            },3000);
+            },500);
         },
 
         mouseleave:function(e){
