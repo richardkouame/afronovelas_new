@@ -60,7 +60,10 @@
                                 <td>{{ tvchannel.link }}</td>
                                 <td>
                                     <a href="{{ path('admin_tvchannel_edit', {id: tvchannel.id}) }}" class="btn btn-warning"><i class="fas fa-pen-alt"></i></a>
-                                    <a href="#" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                    <a href="#" data-form="tv-channel-delete" class="btn btn-danger delete-element"><i class="fas fa-trash-alt"></i></a>
+                                    <form id="tv-channel-delete" action="{{ path('admin_tvchannel_delete', {id: tvchannel.id}) }}" method="post">
+                                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('tv-channel' ~ tvchannel.id) }}">
+                                    </form>
                                 </td>
                             </tr>
                         {% endfor %}

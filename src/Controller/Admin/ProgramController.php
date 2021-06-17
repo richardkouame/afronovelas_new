@@ -97,6 +97,8 @@ class ProgramController extends AbstractController
     public function delete(Program $program, Request $request, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('program'.$program->getId(), $request->request->get('_csrf_token'))) {
+
+            unlink($this->getParameter('programs_directory') . '/' . $program->getImage());
             $entityManager->remove($program);
             $entityManager->flush();
 

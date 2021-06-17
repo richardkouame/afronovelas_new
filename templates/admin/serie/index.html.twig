@@ -62,7 +62,10 @@
                                 <td>{{ serie.trailerLink }}</td>
                                 <td>
                                     <a href="{{ path('admin_serie_edit', {id: serie.id}) }}" class="btn btn-warning"><i class="fas fa-pen-alt"></i></a>
-                                    <a href="#" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                    <a href="#" data-form="serie-delete" class="btn btn-danger delete-element"><i class="fas fa-trash-alt"></i></a>
+                                    <form id="serie-delete" action="{{ path('admin_serie_delete', {id: serie.id}) }}" method="post">
+                                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('serie' ~ serie.id) }}">
+                                    </form>
                                 </td>
                             </tr>
                         {% endfor %}

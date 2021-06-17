@@ -97,4 +97,23 @@ class TvChannelController extends AbstractController
             'tvChannelForm' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/delete/{id}", name="delete", methods={"POST"})
+     */
+    public function delete(TvChanel $tvChanel, Request $request): Response
+    {
+        if ($this->isCsrfTokenValid('tv-channel'.$tvChanel->getId(), $request->request->get('_csrf_token'))) {
+
+            unlink($this->getParameter('bouquets_directory') . '/' . $tvChanel->getImage());
+            $this->entityManager->remove($tvChanel);
+            $this->entityManager->flush();
+
+            $this->addFlash('success', 'Supprime avec succes');
+
+            return $this->redirectToRoute('admin_tvchannel_list');
+        }
+
+        return $this->redirectToRoute('admin_tvchannel_list');
+    }
 }

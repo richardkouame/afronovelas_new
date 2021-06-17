@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Program;
 use App\Entity\Serie;
 use App\Form\SerieType;
 use App\Repository\SerieRepository;
@@ -93,5 +94,24 @@ class SerieController extends AbstractController
         return $this->render("admin/serie/new.html.twig", [
             'serieForm' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/delete/{id}", name="delete", methods={"POST"})
+     */
+    public function delete(Serie $serie, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('serie'.$serie->getId(), $request->request->get('_csrf_token'))) {
+
+            unlink($this->getParameter('series_directory') . '/' . $serie->getImage());
+            $entityManager->remove($serie);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Supprime avec succes');
+
+            return $this->redirectToRoute('admin_serie_liste');
+        }
+
+        return $this->redirectToRoute('admin_serie_liste');
     }
 }
