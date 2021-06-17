@@ -91,8 +91,7 @@ class ScheduleController extends AbstractController
      */
     public function edit(Schedule $schedule, Request $request): Response
     {
-        //$schedule->getStatus() ? $bool = 'true' : $bool = 'false';
-        //$form = $this->createForm(ScheduleType::class, $schedule);
+
         $form = $this->createFormBuilder($schedule)
             ->add('title', TextType::class, [
                 'required' => false,
@@ -101,29 +100,25 @@ class ScheduleController extends AbstractController
                     'value' => $schedule->getTitle()
                 ]
             ])->getForm();
-        //$request->request->set('title', 'Bro');
-        //$form->getData()->setTitle($request->get('outer-group')[0]['title']);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            if (!isset($request->get('outer-group')[0]['status'][0]) || $request->get('outer-group')[0]['status'][0] == null) {
+            if (!isset($request->get('outer-group')[0]['inner-group']['status'][0]) || $request->get('outer-group')[0]['inner-group']['status'][0] == null) {
                 $status = false;
             } else {
-                $status = $request->get('outer-group')[0]['status'][0];
+                $status = $request->get('outer-group')[0]['inner-group']['status'][0];
             }
 
-            $timeGroup = $request->get('outer-group')[0]['inner-group'];
+            $timeGroup = $request->get('outer-group')[0]['inner-group'][0];
             $title = $request->get('outer-group')[0]['title'];
-
-            foreach ($timeGroup as $time) {
-                $t[] = $time['passageTab'];
-            }
 
             $schedule
                 ->setTitle($title)
-                ->setPassage($t)
-                ->setStatus($status == '1' ? true : false);
+                ->setPassage($timeGroup['passageTab'])
+                ->setBloc($timeGroup['bloc'])
+                ->setStatus($status);
 
             $this->manager->persist($schedule);
             $this->manager->flush();
@@ -136,7 +131,8 @@ class ScheduleController extends AbstractController
         return $this->render('admin/schedule/edit.html.twig', [
             'title' => $schedule->getTitle(),
             'status' => $schedule->getStatus(),
-            'passages' => $schedule->getPassage(),
+            'bloc' => $schedule->getBloc(),
+            'passage' => $schedule->getPassage(),
             'scheduleForm' => $form->createView()
         ]);
     }
