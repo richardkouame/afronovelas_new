@@ -39,9 +39,14 @@ class Schedule
     private $user;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="string", length=255)
      */
-    private $passage = [];
+    private $passage;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $bloc;
 
 
     public function getId(): ?int
@@ -86,12 +91,12 @@ class Schedule
         return $this;
     }
 
-    public function getPassage(): ?array
+    public function getPassage(): ?string
     {
         return $this->passage;
     }
 
-    public function setPassage(array $passage): self
+    public function setPassage($passage): self
     {
         $this->passage = $passage;
 
@@ -122,6 +127,18 @@ class Schedule
         }
 
         return $list;
+    }
+
+    public function getBloc(): ?string
+    {
+        return $this->bloc;
+    }
+
+    public function setBloc(string $bloc): self
+    {
+        $this->bloc = $bloc;
+
+        return $this;
     }
 
 }

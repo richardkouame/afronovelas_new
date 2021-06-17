@@ -19,6 +19,14 @@ class ScheduleRepository extends ServiceEntityRepository
         parent::__construct($registry, Schedule::class);
     }
 
+    public function findByTitleGrouped()
+    {
+        return $this->createQueryBuilder('q')
+            ->groupBy('q.bloc')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Schedule[] Returns an array of Schedule objects
     //  */

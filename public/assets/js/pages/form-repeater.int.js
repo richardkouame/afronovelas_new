@@ -25,7 +25,7 @@ $(document).ready(function () {
         repeaters: [{
             selector: ".inner-repeater",
             show: function () {
-                //console.log("inner show"), $(this).slideDown()
+                $(this).children('div.col-2').last().after('<div class="col-2"><input data-repeater-delete type="button" class="btn btn-primary inner" value="-" title="Supprimer ce bloc"/></div>');
                 $(this).children('div').children('input.timepicker').datetimepicker({
                     datepicker: false,
                     format: 'H:i',

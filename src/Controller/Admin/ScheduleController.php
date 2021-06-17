@@ -29,9 +29,18 @@ class ScheduleController extends AbstractController
      */
     public function index(ScheduleRepository $scheduleRepository): Response
     {
+
+
         $schedules = $scheduleRepository->findAll();
+
+        $grouped_types = array();
+
+        foreach($schedules as $schedule){
+            $grouped_types[$schedule->getBloc()][] = $schedule;
+        }
+
         return $this->render('admin/schedule/index.html.twig', [
-            'schedules' => $schedules
+            'schedules' => $grouped_types
         ]);
     }
 
@@ -45,19 +54,26 @@ class ScheduleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $timeGroup = $request->get('outer-group')[0]['inner-group'];
             $title = $request->get('outer-group')[0]['title'];
-            $status = $request->get('outer-group')[0]['status'][0];
-            foreach ($timeGroup as $time) {
-                $t[] = $time['passageTab'];
-            }
-            $schedule
-                ->setTitle($title)
-                ->setPassage($t)
-                ->setStatus($status == '1' ? true : false)
-                ->setUser($this->getUser());
 
-            $this->manager->persist($schedule);
+            foreach ($timeGroup as $time) {
+                $status = false;
+                if (isset($time['status']) && $time['status'][0] == '1') {
+                    $status = true;
+                }
+
+                $data = (new Schedule())
+                    ->setTitle($title)
+                    ->setPassage($time['passageTab'])
+                    ->setBloc($time['bloc'])
+                    ->setStatus($status)
+                    ->setUser($this->getUser());
+
+                $this->manager->persist($data);
+            }
+
             $this->manager->flush();
 
             $this->addFlash('success', 'Ajouté avec succès');
