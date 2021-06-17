@@ -1,18 +1,18 @@
 <div class="row-fluid d-none d-md-block">
     <div class="col-md-12">
 		<footer class="d-flex flex-row align-items-center">
-			<a class="" href="/" id="logo-gray">
+			<a class="" href="{{ path('homepage') }}" id="logo-gray">
 				<img src="{{ asset('images/logo-white.png') }}" alt="">
 			</a>
 
 
 			<nav class="ml-auto">
 				<ul class="list-unstyled d-flex flex-md-row font-avenir-regular">
-					<li><a href="/nos-contacts">Contactez-nous</a></li>
+					<li><a href="{{ path('front_contacts') }}">Contactez-nous</a></li>
 					<li class="d-flex flex-column text-left">
-						<a href="/conditions-generales-de-vente">Conditions générales de vente</a>
-						<a href="/conditions-generales-d-utilisation">Conditions générales d'utilisation</a>
-						<a href="/politiques-de-confidentialite">Politiques de confidentialité</a>
+						<a href="{{ path('front_cgv') }}">Conditions générales de vente</a>
+						<a href="{{ path('front_cgu') }}">Conditions générales d'utilisation</a>
+						<a href="{{ path('front_pdc') }}">Politiques de confidentialité</a>
 
 					</li>
 					<li>

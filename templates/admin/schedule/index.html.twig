@@ -33,7 +33,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-
+            {% if schedules|length > 0 %}
             {% for i in 1..schedules|length %}
             <div class="card">
                 <div class="card-body">
@@ -68,6 +68,7 @@
                 </div>
             </div>
             {% endfor %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}

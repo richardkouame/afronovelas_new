@@ -50,12 +50,9 @@
                                                     <div class="form-group">
                                                         <select name="bloc" id="" class="select" required>
                                                             <option value="">Choisir le bloc</option>
-                                                            <option value="bloc1" {{ bloc == 'bloc1' ? 'selected = "selected"' }}>Bloc 1</option>
-                                                            <option value="bloc2" {{ bloc == 'bloc2' ? 'selected = "selected"' }}>Bloc 2</option>
-                                                            <option value="bloc3" {{ bloc == 'bloc3' ? 'selected = "selected"' }}>Bloc 3</option>
-                                                            <option value="bloc4" {{ bloc == 'bloc4' ? 'selected = "selected"' }}>Bloc 4</option>
-                                                            <option value="bloc5" {{ bloc == 'bloc5' ? 'selected = "selected"' }}>Bloc 5</option>
-                                                            <option value="bloc6" {{ bloc == 'bloc6' ? 'selected = "selected"' }}>Bloc 6</option>
+                                                            {% for i in 1..10 %}
+                                                            <option value="bloc{{ i }} {{ bloc == 'bloc' ~ i ? 'selected = "selected"' }}">Bloc {{ i }}</option>
+                                                            {% endfor %}
                                                         </select>
                                                     </div>
                                                 </div>

@@ -53,12 +53,9 @@
                                                     <div class="form-group">
                                                         <select name="bloc" id="" class="select" required>
                                                             <option selected value="">Choisir le bloc</option>
-                                                            <option value="bloc1">Bloc 1</option>
-                                                            <option value="bloc2">Bloc 2</option>
-                                                            <option value="bloc3">Bloc 3</option>
-                                                            <option value="bloc4">Bloc 4</option>
-                                                            <option value="bloc5">Bloc 5</option>
-                                                            <option value="bloc6">Bloc 6</option>
+                                                            {% for i in 1..10 %}
+                                                            <option value="bloc{{ i }}">Bloc {{ i }}</option>
+                                                            {% endfor %}
                                                         </select>
                                                     </div>
                                                 </div>
