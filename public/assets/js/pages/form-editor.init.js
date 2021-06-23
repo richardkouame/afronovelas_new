@@ -6,6 +6,7 @@ $(document).ready(function () {
         menubar: false,
         plugins: ["paste"],
         paste_as_text: true,
+        entity_encoding : "raw",
         toolbar: "insertfile undo redo | bold italic | emoticons",
         content_style:''
     });
