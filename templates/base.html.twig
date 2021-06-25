@@ -9,9 +9,14 @@
         <title>
             Afro Novelas &mdash; Accueil
         </title>
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/favicon/apple-touch-icon.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon/favicon-16x16.png') }}">
+        <link rel="manifest" href="{{ asset('images/favicon/site.webmanifest') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no"
         />
-        <meta name="description" content="">
+        <meta name="description" content="Votre site dédié aux meilleures séries d'Afrique">
+        <meta name="keywords" content="series africaines, afronovelas, novelas, chaine tv, chaine linéaire, vod, bouquet, svod, tvod, avod, playout, streaming, afro, diffusion, magic movies, côte ouest, audiovisuel, audiovisuelle">
 
         <!-- Disable tap highlight on IE -->
         <meta name="msapplication-tap-highlight" content="no">
@@ -27,6 +32,15 @@
     </head>
 
     <body class="" data-anchor="{{ app.request.query.get('anchor') }}">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CD85FL1WFZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-CD85FL1WFZ');
+    </script>
 
         <div class="container-fluid px-0">
             {{ include("header.html.twig") }}
